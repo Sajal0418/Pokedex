@@ -62,6 +62,7 @@ flutter_launcher_icons:
 flutter:
   assets:
     - public/images/logo-type.png
+    - public/images/bg.png
     - public/images/pokemons/pokemon-1.png
     - public/images/pokemons/pokemon-2.png
     - public/images/pokemons/pokemon-3.png

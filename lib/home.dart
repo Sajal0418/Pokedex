@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'DetailPage.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,38 +14,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // List of image paths
   final List<String> imagePaths = [
-    'public/images/types/bug.png',
-    'public/images/types/dark.png',
-    'public/images/types/dragon.png',
-    'public/images/types/electric.png',
-    'public/images/types/fairy.png',
-    'public/images/types/fighting.png',
-    'public/images/types/fire.png',
-    'public/images/types/flying.png',
-    'public/images/types/ghost.png',
-    'public/images/types/grass.png',
-    'public/images/types/ground.png',
-    'public/images/types/ice.png',
-    'public/images/types/normal.png',
-    'public/images/types/poison.png',
-    'public/images/types/psychic.png',
-    'public/images/types/rock.png',
-    'public/images/types/steel.png',
-    'public/images/types/water.png',
+    'public/images/pokemons/pokemon-1.png',
+    'public/images/pokemons/pokemon-2.png',
+    'public/images/pokemons/pokemon-3.png',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF5db9ff),
+        backgroundColor: const Color(0xFF5db9ff),
         title: Text(widget.title),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(
+            const UserAccountsDrawerHeader(
               accountName: Text('John Doe'),
               accountEmail: Text('test@gmail.com'),
               currentAccountPicture: CircleAvatar(
@@ -55,49 +41,186 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: (){
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
                 Navigator.of(context).pop();
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: (){
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailPage(imagePath: 'public/images/types/bug.png')));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailPage(
+                            imagePath: 'public/images/types/bug.png')));
               },
             )
           ],
         ),
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(8),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-        ),
-        itemCount: imagePaths.length,
-        itemBuilder: (context, index) {
-          final imagePath = imagePaths[index];
-          final cardName = imagePath.split('/').last.split('.').first; // Extract the name from path
-
-          return Center(
-            child: Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: _SampleCard(
-                cardName: cardName,
-                imagePath: imagePath,
-              ),
+      body:  SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: Text(
+                    'Fire Type',
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: imagePaths.map((iterable) {
+                      final cardName = iterable.split('/').last.split('.').first;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: _SampleCard(
+                            cardName: cardName,
+                            imagePath: iterable,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: Text(
+                    'Water Type',
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: imagePaths.map((iterable) {
+                      final cardName = iterable.split('/').last.split('.').first;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: _SampleCard(
+                            cardName: cardName,
+                            imagePath: iterable,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: Text(
+                    'Grass Type',
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: Colors.green,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: imagePaths.map((iterable) {
+                      final cardName = iterable.split('/').last.split('.').first;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: _SampleCard(
+                            cardName: cardName,
+                            imagePath: iterable,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 15,
+                  ),
+                  child: Text(
+                    'Electric Type',
+                    style: GoogleFonts.roboto(
+                      textStyle: const TextStyle(
+                        color: Colors.yellow,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: imagePaths.map((iterable) {
+                      final cardName = iterable.split('/').last.split('.').first;
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: _SampleCard(
+                            cardName: cardName,
+                            imagePath: iterable,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -126,11 +249,13 @@ class _SampleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300, // Adjust card width
-      height: 200, // Adjust card height
+      width: 150, // Adjust card width
+      height: 100, // Adjust card height
       child: Column(
         children: [
-          Expanded(
+          Container(
+            height: 60, // Adjust to cover half of the card's height
+            width: double.infinity, // Full width of the card
             child: GestureDetector(
               onTap: () {
                 // Navigate to DetailPage when the image is tapped
@@ -142,18 +267,23 @@ class _SampleCard extends StatelessWidget {
                 );
               },
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                 child: Image.asset(
                   imagePath,
-                  fit: BoxFit.cover, // Adjust image fit
+                  width: 70,
+                  // fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 8), // Add some spacing between the image and text
-          Text(
-            cardName,
-            style: TextStyle(fontSize: 14),
+          const SizedBox(height: 4), // Add some spacing between the image and text
+          Expanded(
+            child: Center(
+              child: Text(
+                cardName,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ],
       ),
